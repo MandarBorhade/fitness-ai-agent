@@ -8,15 +8,10 @@ from dotenv import load_dotenv
 from agno.tools.duckduckgo import DuckDuckGoTools
 from agno.utils.pprint import pprint_run_response
 import textwrap
-from agno.models.google import Gemini
 load_dotenv()
 
-openai_key = os.environ.get("OPENAI_API_KEY")
-gemini_key = os.environ.get("GEMINI_API_KEY")             
+openai_key = os.environ.get("OPENAI_API_KEY")            
 openai_model = OpenAIChat(id="gpt-4o-mini", api_key=openai_key)
-gemini_model = Gemini(id="gemini-1.5-flash", api_key=gemini_key)
-
-
 
 
 st.set_page_config(
@@ -93,7 +88,7 @@ if generate_plan_button:
             Activity Level: {activity_level}
             Fitness Goals: {fitness_goals}
             """),
-            model=gemini_model,
+            model=openai_model,
             instructions=[
                 "Provide exercises tailored to the user's goals.",
                 "Include warm-up, main workout, and cool-down exercises.",
